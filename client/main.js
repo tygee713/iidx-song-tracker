@@ -5,4 +5,4 @@ Meteor.startup(() => {
   new App({
     target: document.getElementById('app')
   });
-});
+})

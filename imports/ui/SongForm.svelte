@@ -2,6 +2,7 @@
   import { SongsCollection } from '../api/SongsCollection'
 
   export let user = null
+  export let sections = []
 
   let name = ''
   let level = ''
@@ -17,15 +18,17 @@
       pass,
       grade,
       notes,
+      section,
       userId: user._id,
       createdAt: new Date(),
     })
 
-    let name = ''
-    let level = ''
-    let pass = false
-    let grade = ''
-    let notes = ''
+    name = ''
+    level = ''
+    pass = false
+    grade = ''
+    notes = ''
+    section = 1
   }
 </script>
 
@@ -37,7 +40,7 @@
   <input type="text" name="notes" bind:value={notes} />
   <select id="section" name="section" bind:value={section}>
     { #each sections as section(section._id) }
-      <option value={section.order}>section.title</option>
+      <option value={section.order}>{ section.title }</option>
     { /each }
   </select>
   <button type="submit">Add Record</button>

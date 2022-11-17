@@ -4,21 +4,20 @@ import { SectionsCollection } from './SectionsCollection'
 import { SongsCollection } from './SongsCollection'
  
 Meteor.methods({
-  'songs.insert'(song) {
-    check(text, String)
- 
+  'songs.insert'(song) { 
     if (!this.userId) {
       throw new Meteor.Error('Not authorized.')
     }
  
-    const { name, level, pass, grade, notes, sectionId } = song
+    const { name, level, pass, grade, notes, section } = song
+    check(name, String)
     SongsCollection.insert({
       name,
       level,
       pass,
       grade,
       notes,
-      sectionId,
+      section,
       userId: this.userId,
       createdAt: new Date(),
     })

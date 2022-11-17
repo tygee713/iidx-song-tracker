@@ -1,13 +1,14 @@
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
 import { SectionsCollection } from '../imports/api/SectionsCollection'
-import '/imports/api/dbMethods'
-import '/imports/api/dbPublications'
+import '../imports/api/dbMethods'
+import '../imports/api/dbPublications'
 
 const SEED_USERNAME = 'meteorite'
 const SEED_PASSWORD = 'password'
 
 Meteor.startup(() => {
+  console.log(SectionsCollection.find({}).fetch())
   if (SectionsCollection.find().count() === 0) {
     SectionsCollection.insert({ title: 'Songs to practice', order: 1 })
     SectionsCollection.insert({ title: 'Songs close to passing', order: 2 })

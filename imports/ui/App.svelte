@@ -2,7 +2,7 @@
   import SongForm from './SongForm.svelte'
   import LoginForm from './LoginForm.svelte'
   import SongsTable from './SongsTable.svelte'
-  import { SectionsCollection } from '../api/SongsCollection'
+  import { SectionsCollection } from '../api/SectionsCollection'
   import { SongsCollection } from '../api/SongsCollection'
   import { Meteor } from 'meteor/meteor'
 
@@ -12,20 +12,17 @@
   let songsCloseToPassing = []
   let songsNotNearPassing = []
 
-  let isLoading = true
-  const handler = Meteor.subscribe('songs')
+  Meteor.subscribe('songs')
   Meteor.subscribe('sections')
 
   $m: {
     user = Meteor.user()
 
     if (user) {
-      isLoading = !handler.ready()
-
-      const songsFilter = (sectionId) => { userId: user._id, sectionId }
-      songs = SongsCollection.find(userFilter, { sort: { createdAt: -1 } }).fetch()
-      sections = SectionsCollection.find({}, { sort: { order: 1 } }).fetch()
+      const songsFilter = (section) => ({ userId: user._id, section })
+      sections = SectionsCollection.find({}).fetch()
       songsToPractice = SongsCollection.find(songsFilter(1), { sort: { createdAt: -1 } }).fetch()
+      console.log(songsToPractice)
       songsCloseToPassing = SongsCollection.find(songsFilter(2), { sort: { createdAt: -1 } }).fetch()
       songsNotNearPassing = SongsCollection.find(songsFilter(3), { sort: { createdAt: -1 } }).fetch()
     }
@@ -46,9 +43,6 @@
     {/if}
   </header>
   {#if user}
-    {#if isLoading}
-      <div class="loading">loading...</div>
-    {:else}
       <div class="main">
         <SongForm user={user} sections={sections} />
 
@@ -68,6 +62,5 @@
           <SongsTable songs={songsNotNearPassing} />
         </div>
       </div>
-    {/if}
   {/if}
 </div>
