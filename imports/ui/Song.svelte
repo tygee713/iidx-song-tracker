@@ -2,4 +2,10 @@
   export let song
 </script>
 
-<li>{ song.title }</li>
+<tr>
+  <td>{ song.name }</td>
+  <td>{ song.level }</td>
+  <td>{ song.pass ? 'YES' : 'NO' }</td>
+  <td>{ song.grade }</td>
+  <td>{ song.notes }</td>
+</tr>
