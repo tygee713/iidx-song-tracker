@@ -6,7 +6,7 @@
 
   let name = ''
   let level = ''
-  let pass = false
+  let pass = true
   let grade = ''
   let notes = ''
   let section = 1
@@ -25,23 +25,26 @@
 
     name = ''
     level = ''
-    pass = false
+    pass = true
     grade = ''
     notes = ''
     section = 1
   }
 </script>
 
-<form class="song-form" on:submit|preventDefault={handleSubmit}>
-  <input type="text" name="name" bind:value={name} />
-  <input type="text" name="level" bind:value={level} />
-  <input type="text" name="pass" bind:value={pass} />
-  <input type="text" name="grade" bind:value={grade} />
-  <input type="text" name="notes" bind:value={notes} />
-  <select id="section" name="section" bind:value={section}>
+<form class="form-inline form-group" on:submit|preventDefault={handleSubmit}>
+  <input class="form-control" type="text" name="name" placeholder="Song title" bind:value={name} />
+  <input class="form-control" type="text" name="level" placeholder="Level" bind:value={level} />
+  <select class="form-control" id="pass" name="pass" bind:value={pass}>
+    <option value={true}>Pass</option>
+    <option value={false}>Fail</option>
+  </select>
+  <input class="form-control" type="text" name="grade" placeholder="Grade" bind:value={grade} />
+  <input class="form-control" type="text" name="notes" placeholder="Notes" bind:value={notes} />
+  <select class="form-control" id="section" name="section" bind:value={section}>
     { #each sections as section(section._id) }
       <option value={section.order}>{ section.title }</option>
     { /each }
   </select>
-  <button type="submit">Add Record</button>
+  <button class="btn btn-default" type="submit">Add Record</button>
 </form>

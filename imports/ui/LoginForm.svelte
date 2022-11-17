@@ -9,18 +9,8 @@
   }
 </script>
 
-<form class="login-form" on:submit|preventDefault={handleSubmit}>
-  <div>
-    <label htmlFor="username">Username</label>
-    <input type="text" placeholder="Username" name="username" required bind:value={username} />
-  </div>
-
-  <div>
-    <label htmlFor="password">Password</label>
-    <input type="text" placeholder="Password" name="password" required bind:value={password} />
-  </div>
-
-  <div>
-    <button type="submit">Log In</button>
-  </div>
+<form class="form-group navbar-form" on:submit|preventDefault={handleSubmit}>
+    <input class="form-control" type="text" placeholder="Username" name="username" required bind:value={username} />
+    <input class="form-control" type="text" placeholder="Password" name="password" required bind:value={password} />
+    <button class="btn btn-default" type="submit">Log In</button>
 </form>

@@ -5,7 +5,7 @@
 <tr>
   <td>{ song.name }</td>
   <td>{ song.level }</td>
-  <td>{ song.pass ? 'YES' : 'NO' }</td>
+  <td>{ song.pass ? 'PASS' : 'FAIL' }</td>
   <td>{ song.grade }</td>
   <td>{ song.notes }</td>
 </tr>
