@@ -1,6 +1,5 @@
-import { Meteor } from 'meteor/meteor';
-import App from '../imports/ui/App.svelte';
-
+import { Meteor } from 'meteor/meteor'
+import App from '../imports/ui/App.svelte'
 
 Meteor.startup(() => {
   new App({
